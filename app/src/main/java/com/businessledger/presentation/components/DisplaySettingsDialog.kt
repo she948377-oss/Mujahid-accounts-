@@ -84,7 +84,7 @@ fun DisplaySettingsDialog(
                 OutlinedTextField(
                     value = businessName,
                     onValueChange = { businessName = it },
-                    label = { Text("Business Name (کاروبار کا نام)") },
+                    label = { Text("Business Name") },
                     leadingIcon = { Icon(Icons.Default.Business, contentDescription = null) },
                     modifier = Modifier.fillMaxWidth().testTag("setting_business_name_input"),
                     singleLine = true
@@ -93,7 +93,7 @@ fun DisplaySettingsDialog(
                 OutlinedTextField(
                     value = phone,
                     onValueChange = { phone = it },
-                    label = { Text("Business Phone (فون نمبر)") },
+                    label = { Text("Business Phone") },
                     leadingIcon = { Icon(Icons.Default.Phone, contentDescription = null) },
                     modifier = Modifier.fillMaxWidth().testTag("setting_phone_input"),
                     singleLine = true
@@ -102,14 +102,14 @@ fun DisplaySettingsDialog(
                 OutlinedTextField(
                     value = address,
                     onValueChange = { address = it },
-                    label = { Text("Address / Location (پتہ)") },
+                    label = { Text("Address / Location") },
                     leadingIcon = { Icon(Icons.Default.LocationOn, contentDescription = null) },
                     modifier = Modifier.fillMaxWidth().testTag("setting_address_input"),
                     singleLine = true
                 )
 
                 Text(
-                    text = "Currency Symbol (کرنسی)",
+                    text = "Currency Symbol",
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -127,7 +127,7 @@ fun DisplaySettingsDialog(
                 }
 
                 Text(
-                    text = "Language Mode (زبان)",
+                    text = "Language Mode",
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -142,8 +142,8 @@ fun DisplaySettingsDialog(
                             label = {
                                 Text(
                                     when (lang) {
-                                        "Urdu" -> "اردو (Urdu)"
-                                        "Bilingual" -> "دونوں (Bilingual)"
+                                        "Urdu" -> "Urdu"
+                                        "Bilingual" -> "Bilingual"
                                         else -> "English"
                                     }
                                 )
@@ -161,7 +161,7 @@ fun DisplaySettingsDialog(
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text("Show Balance in Header", fontWeight = FontWeight.Medium)
-                        Text("ڈیش بورڈ پر کل بیلنس دکھائیں", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text("Display total balance on dashboard header", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     Switch(
                         checked = showBalanceInHeader,
@@ -176,7 +176,7 @@ fun DisplaySettingsDialog(
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text("Compact Card Layout", fontWeight = FontWeight.Medium)
-                        Text("چھوٹا اور اسمارٹ ڈسپلے", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text("Display compact cards for lists", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     Switch(
                         checked = compactView,

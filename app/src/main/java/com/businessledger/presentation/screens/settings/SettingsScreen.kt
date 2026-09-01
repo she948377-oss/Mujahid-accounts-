@@ -143,7 +143,7 @@ fun SettingsScreen(
                             modifier = Modifier.fillMaxWidth(),
                             shape = RoundedCornerShape(10.dp)
                         ) {
-                            Text("Edit Business Profile (کاروباری معلومات)")
+                            Text("Edit Business Profile")
                         }
                     }
                 }
@@ -152,7 +152,7 @@ fun SettingsScreen(
             // Display & Localization Section
             item {
                 Text(
-                    text = "Localization & Display (زبان اور کرنسی)",
+                    text = "Localization & Display",
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary
@@ -168,16 +168,16 @@ fun SettingsScreen(
                     Column {
                         SettingsRow(
                             icon = Icons.Default.MonetizationOn,
-                            title = "Currency (کرنسی)",
+                            title = "Currency",
                             subtitle = "${settings.currencySymbol} (${settings.currencyCode})",
                             onClick = { showCurrencyDialog = true }
                         )
 
                         SettingsRow(
                             icon = Icons.Default.Language,
-                            title = "App Language (زبان)",
+                            title = "App Language",
                             subtitle = when (settings.languageCode) {
-                                "ur" -> "اردو (Urdu)"
+                                "ur" -> "Urdu"
                                 "roman" -> "Roman Urdu"
                                 else -> "English (Default)"
                             },
@@ -207,7 +207,7 @@ fun SettingsScreen(
             // Quick Data Tools Section
             item {
                 Text(
-                    text = "Data Management (ڈیٹا کے ٹولز)",
+                    text = "Data Management",
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary
@@ -247,7 +247,7 @@ fun SettingsScreen(
                             colors = ButtonDefaults.buttonColors(containerColor = DebitRed.copy(alpha = 0.9f)),
                             modifier = Modifier.fillMaxWidth().testTag("clear_all_data_button")
                         ) {
-                            Text("Clear All Data (تمام ڈیٹا صاف کریں)")
+                            Text("Clear All Data")
                         }
                     }
                 }
@@ -267,7 +267,7 @@ fun SettingsScreen(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = "Mujahid Accounts • مجاہد اکاونٹس",
+                            text = "Mujahid Accounts",
                             fontWeight = FontWeight.Bold,
                             style = MaterialTheme.typography.titleMedium
                         )
@@ -278,7 +278,7 @@ fun SettingsScreen(
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "Safe, Reliable Khata & Stock Management for Pakistani & International Traders.",
+                            text = "Safe, Reliable Khata & Stock Management for Traders and Businesses.",
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             fontSize = 11.sp
@@ -452,7 +452,7 @@ private fun CurrencySelectionDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Select Currency (کرنسی منتخب کریں)") },
+        title = { Text("Select Currency") },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 currencies.forEach { (symbol, name) ->

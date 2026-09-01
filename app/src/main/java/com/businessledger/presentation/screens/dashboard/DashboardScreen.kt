@@ -136,7 +136,7 @@ fun DashboardScreen(
         // Quick Actions Row
         item {
             Text(
-                text = "Quick Actions (فوری اندراج)",
+                text = "Quick Actions",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
@@ -169,7 +169,7 @@ fun DashboardScreen(
             ) {
                 Column {
                     Text(
-                        text = "Recent Transactions (حالیہ لین دین)",
+                        text = "Recent Transactions",
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold
                     )
@@ -306,7 +306,7 @@ private fun HeaderSection(
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = if (businessPhone.isNotEmpty()) businessPhone else "مجاہد اکاونٹس • ڈیجیٹل کھاتہ",
+                        text = if (businessPhone.isNotEmpty()) businessPhone else "Digital Khata & Ledger",
                         style = MaterialTheme.typography.bodySmall,
                         color = Color.White.copy(alpha = 0.85f)
                     )
@@ -362,7 +362,7 @@ private fun LedgerCardsSection(
                 ) {
                     Column {
                         Text(
-                            text = "Total Net Balance (میزان بقایا)",
+                            text = "Total Net Balance",
                             style = MaterialTheme.typography.labelLarge,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -417,7 +417,7 @@ private fun LedgerCardsSection(
                                 )
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Text(
-                                    text = "Lena Hai (وصولی)",
+                                    text = "To Receive (Lena Hai)",
                                     style = MaterialTheme.typography.labelSmall,
                                     color = CreditGreen,
                                     fontWeight = FontWeight.SemiBold
@@ -451,7 +451,7 @@ private fun LedgerCardsSection(
                                 )
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Text(
-                                    text = "Dena Hai (ادائیگی)",
+                                    text = "To Pay (Dena Hai)",
                                     style = MaterialTheme.typography.labelSmall,
                                     color = DebitRed,
                                     fontWeight = FontWeight.SemiBold
@@ -505,7 +505,7 @@ private fun CashFlowStrip(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Today's Cash Flow (آج کا کیش روکڑ)",
+                        text = "Today's Cash Flow",
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.Bold
                     )
@@ -526,7 +526,7 @@ private fun CashFlowStrip(
             ) {
                 Column {
                     Text(
-                        text = "Cash In (آمد)",
+                        text = "Cash In",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -540,7 +540,7 @@ private fun CashFlowStrip(
 
                 Column {
                     Text(
-                        text = "Cash Out (خرچ)",
+                        text = "Cash Out",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -554,7 +554,7 @@ private fun CashFlowStrip(
 
                 Column(horizontalAlignment = Alignment.End) {
                     Text(
-                        text = "Net Cash (خالص بچت)",
+                        text = "Net Cash",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -587,7 +587,7 @@ private fun QuickActionsSection(
             QuickActionButton(
                 icon = Icons.Default.PersonAdd,
                 title = "New Khata",
-                subtitle = "نیا کھاتہ",
+                subtitle = "Customer/Supplier",
                 color = EmeraldGreen,
                 onClick = onAddParty,
                 testTag = "quick_action_add_party"
@@ -597,7 +597,7 @@ private fun QuickActionsSection(
             QuickActionButton(
                 icon = Icons.Default.Add,
                 title = "Cash In/Out",
-                subtitle = "آمد / خرچ",
+                subtitle = "Record Entry",
                 color = Color(0xFF0284C7),
                 onClick = onAddCash,
                 testTag = "quick_action_add_cash"
@@ -607,7 +607,7 @@ private fun QuickActionsSection(
             QuickActionButton(
                 icon = Icons.Default.Inventory,
                 title = "Inventory",
-                subtitle = "اسٹاک مال",
+                subtitle = "Products & Stock",
                 color = Color(0xFFD97706),
                 onClick = onInventory,
                 testTag = "quick_action_inventory"
@@ -617,7 +617,7 @@ private fun QuickActionsSection(
             QuickActionButton(
                 icon = Icons.Default.TrendingUp,
                 title = "Reports",
-                subtitle = "حساب کتاب",
+                subtitle = "Statements",
                 color = Color(0xFF7C3AED),
                 onClick = onReports,
                 testTag = "quick_action_reports"
@@ -780,7 +780,7 @@ private fun RecentTransactionItem(
 ) {
     val isGave = tx.type == TransactionType.GAVE
     val amountColor = if (isGave) DebitRed else CreditGreen
-    val typeLabel = if (isGave) "You Gave (ادھار)" else "You Got (وصولی)"
+    val typeLabel = if (isGave) "You Gave" else "You Got"
 
     Card(
         modifier = Modifier
@@ -862,7 +862,7 @@ private fun QuickAddPartyDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = "Add New Party (نیا کھاتہ)",
+                text = "Add New Party",
                 fontWeight = FontWeight.Bold
             )
         },
@@ -878,13 +878,13 @@ private fun QuickAddPartyDialog(
                     FilterChip(
                         selected = partyType == PartyType.CUSTOMER,
                         onClick = { partyType = PartyType.CUSTOMER },
-                        label = { Text("Customer (گاہک)") },
+                        label = { Text("Customer") },
                         modifier = Modifier.weight(1f)
                     )
                     FilterChip(
                         selected = partyType == PartyType.SUPPLIER,
                         onClick = { partyType = PartyType.SUPPLIER },
-                        label = { Text("Supplier (سپلائر)") },
+                        label = { Text("Supplier") },
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -892,7 +892,7 @@ private fun QuickAddPartyDialog(
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Party Name (نام)") },
+                    label = { Text("Party Name") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth().testTag("quick_party_name_input")
                 )
@@ -900,7 +900,7 @@ private fun QuickAddPartyDialog(
                 OutlinedTextField(
                     value = phone,
                     onValueChange = { phone = it },
-                    label = { Text("Phone Number (فون)") },
+                    label = { Text("Phone Number") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth().testTag("quick_party_phone_input")
@@ -909,7 +909,7 @@ private fun QuickAddPartyDialog(
                 OutlinedTextField(
                     value = openingBalanceStr,
                     onValueChange = { openingBalanceStr = it },
-                    label = { Text("Opening Balance (سابقہ بقایا)") },
+                    label = { Text("Opening Balance") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth().testTag("quick_party_balance_input")
@@ -959,7 +959,7 @@ private fun QuickAddCashDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = "Add Cashbook Entry (روکڑ اندراج)",
+                text = "Add Cash Entry",
                 fontWeight = FontWeight.Bold
             )
         },
@@ -978,7 +978,7 @@ private fun QuickAddCashDialog(
                             type = CashEntryType.CASH_IN
                             category = "Counter Sales"
                         },
-                        label = { Text("Cash In (آمد)") },
+                        label = { Text("Cash In") },
                         modifier = Modifier.weight(1f)
                     )
                     FilterChip(
@@ -987,7 +987,7 @@ private fun QuickAddCashDialog(
                             type = CashEntryType.CASH_OUT
                             category = "Shop Expenses"
                         },
-                        label = { Text("Cash Out (خرچ)") },
+                        label = { Text("Cash Out") },
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -995,13 +995,13 @@ private fun QuickAddCashDialog(
                 OutlinedTextField(
                     value = amountStr,
                     onValueChange = { amountStr = it },
-                    label = { Text("Amount (رقم)") },
+                    label = { Text("Amount") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth().testTag("quick_cash_amount_input")
                 )
 
-                Text("Category (کیٹیگری):", style = MaterialTheme.typography.labelMedium)
+                Text("Category:", style = MaterialTheme.typography.labelMedium)
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(6.dp),
                     modifier = Modifier.fillMaxWidth()
@@ -1018,7 +1018,7 @@ private fun QuickAddCashDialog(
                 OutlinedTextField(
                     value = description,
                     onValueChange = { description = it },
-                    label = { Text("Description / Remarks (تفصیل)") },
+                    label = { Text("Description / Remarks") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )

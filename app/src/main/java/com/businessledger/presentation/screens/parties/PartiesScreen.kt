@@ -94,7 +94,7 @@ fun PartiesScreen(
             ExtendedFloatingActionButton(
                 onClick = { showAddDialog = true },
                 icon = { Icon(Icons.Default.PersonAdd, contentDescription = null) },
-                text = { Text("Add Party (نیا کھاتہ)") },
+                text = { Text("Add Party") },
                 containerColor = EmeraldGreen,
                 contentColor = Color.White,
                 modifier = Modifier.padding(bottom = 72.dp).testTag("add_party_fab")
@@ -138,8 +138,8 @@ fun PartiesScreen(
             // Primary Tabs: All, Customers, Suppliers
             val tabs = listOf(
                 PartyFilterTab.ALL to "All (${uiState.parties.size})",
-                PartyFilterTab.CUSTOMERS to "Customers (گاہک)",
-                PartyFilterTab.SUPPLIERS to "Suppliers (سپلائر)"
+                PartyFilterTab.CUSTOMERS to "Customers",
+                PartyFilterTab.SUPPLIERS to "Suppliers"
             )
             val selectedTabIndex = when (uiState.filterTab) {
                 PartyFilterTab.ALL -> 0
@@ -264,7 +264,7 @@ private fun PartiesTopSummary(
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
-                    text = "Total Lena Hai (وصولی)",
+                    text = "Total Receivable",
                     style = MaterialTheme.typography.labelSmall,
                     color = CreditGreen,
                     fontWeight = FontWeight.SemiBold
@@ -286,7 +286,7 @@ private fun PartiesTopSummary(
 
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
-                    text = "Total Dena Hai (ادائیگی)",
+                    text = "Total Payable",
                     style = MaterialTheme.typography.labelSmall,
                     color = DebitRed,
                     fontWeight = FontWeight.SemiBold
@@ -322,8 +322,8 @@ private fun PartyListItem(
     }
 
     val balanceLabel = when {
-        isReceivable -> "Lena Hai (وصولی)"
-        isPayable -> "Dena Hai (ادائیگی)"
+        isReceivable -> "To Receive"
+        isPayable -> "To Pay"
         else -> "Settled (0.00)"
     }
 
@@ -487,7 +487,7 @@ private fun AddPartyFullDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = "Add Party Khata (کھاتہ درج کریں)",
+                text = "Add Party Khata",
                 fontWeight = FontWeight.Bold
             )
         },
@@ -503,13 +503,13 @@ private fun AddPartyFullDialog(
                     FilterChip(
                         selected = partyType == PartyType.CUSTOMER,
                         onClick = { partyType = PartyType.CUSTOMER },
-                        label = { Text("Customer (گاہک)") },
+                        label = { Text("Customer") },
                         modifier = Modifier.weight(1f)
                     )
                     FilterChip(
                         selected = partyType == PartyType.SUPPLIER,
                         onClick = { partyType = PartyType.SUPPLIER },
-                        label = { Text("Supplier (سپلائر)") },
+                        label = { Text("Supplier") },
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -517,7 +517,7 @@ private fun AddPartyFullDialog(
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Party Name (پارٹی کا نام) *") },
+                    label = { Text("Party Name *") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth().testTag("dialog_party_name_input")
                 )
@@ -525,7 +525,7 @@ private fun AddPartyFullDialog(
                 OutlinedTextField(
                     value = phone,
                     onValueChange = { phone = it },
-                    label = { Text("Phone Number (فون نمبر)") },
+                    label = { Text("Phone Number") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth().testTag("dialog_party_phone_input")
@@ -534,7 +534,7 @@ private fun AddPartyFullDialog(
                 OutlinedTextField(
                     value = address,
                     onValueChange = { address = it },
-                    label = { Text("Shop / Address (پتہ یا دکان)") },
+                    label = { Text("Shop / Address") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -542,8 +542,8 @@ private fun AddPartyFullDialog(
                 OutlinedTextField(
                     value = openingBalanceStr,
                     onValueChange = { openingBalanceStr = it },
-                    label = { Text("Opening Balance (سابقہ بقایا رقم)") },
-                    placeholder = { Text("e.g. 5000 (Positive for Lena Hai)") },
+                    label = { Text("Opening Balance") },
+                    placeholder = { Text("e.g. 5000 (Positive for Receivable)") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth().testTag("dialog_party_balance_input")
@@ -552,7 +552,7 @@ private fun AddPartyFullDialog(
                 OutlinedTextField(
                     value = notes,
                     onValueChange = { notes = it },
-                    label = { Text("Notes / Remarks (ریمارکس)") },
+                    label = { Text("Notes / Remarks") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )

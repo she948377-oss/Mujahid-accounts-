@@ -206,8 +206,8 @@ fun PartyDetailScreen(
                         Icon(Icons.Default.Remove, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(6.dp))
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text("YOU GAVE (دیا)", fontWeight = FontWeight.Bold, fontSize = 13.sp)
-                            Text("ادھار مال / رقم", fontSize = 10.sp)
+                            Text("YOU GAVE", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                            Text("Goods / Cash Given", fontSize = 10.sp)
                         }
                     }
 
@@ -230,8 +230,8 @@ fun PartyDetailScreen(
                         Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(6.dp))
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text("YOU GOT (ملا)", fontWeight = FontWeight.Bold, fontSize = 13.sp)
-                            Text("وصولی / ادائیگی", fontSize = 10.sp)
+                            Text("YOU GOT", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                            Text("Payment Received", fontSize = 10.sp)
                         }
                     }
                 }
@@ -272,7 +272,7 @@ fun PartyDetailScreen(
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = "تفصیل و میزان",
+                        text = "Running Balance",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -379,7 +379,7 @@ private fun PartyDetailHeaderCard(
     val isReceivable = netBalance > 0
     val isPayable = netBalance < 0
     val balanceColor = if (isReceivable) CreditGreen else if (isPayable) DebitRed else MaterialTheme.colorScheme.onSurfaceVariant
-    val balanceLabel = if (isReceivable) "You will receive (لینا ہے)" else if (isPayable) "You will pay (دینا ہے)" else "Settled / Clear (0)"
+    val balanceLabel = if (isReceivable) "You will receive (Receivable)" else if (isPayable) "You will pay (Payable)" else "Settled / Clear (0.00)"
 
     Card(
         modifier = Modifier
@@ -398,7 +398,7 @@ private fun PartyDetailHeaderCard(
             ) {
                 Column {
                     Text(
-                        text = "Net Balance (کل بقایا)",
+                        text = "Net Balance",
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -444,7 +444,7 @@ private fun PartyDetailHeaderCard(
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        text = "Total Gave (ادھار مال)",
+                        text = "Total Gave",
                         style = MaterialTheme.typography.labelSmall,
                         color = DebitRed
                     )
@@ -465,7 +465,7 @@ private fun PartyDetailHeaderCard(
 
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        text = "Total Got (کل وصولی)",
+                        text = "Total Got",
                         style = MaterialTheme.typography.labelSmall,
                         color = CreditGreen
                     )
@@ -585,7 +585,7 @@ private fun RecordTransactionDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = if (isGave) "You Gave (-) آپ نے دیا" else "You Got (+) آپ کو ملا",
+                text = if (isGave) "You Gave (-)" else "You Got (+)",
                 color = if (isGave) DebitRed else CreditGreen,
                 fontWeight = FontWeight.Bold
             )
@@ -607,7 +607,7 @@ private fun RecordTransactionDialog(
                 OutlinedTextField(
                     value = description,
                     onValueChange = { description = it },
-                    label = { Text("Notes / Item Description (تفصیل مال)") },
+                    label = { Text("Notes / Item Description") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth().testTag("transaction_desc_input")
                 )
@@ -615,7 +615,7 @@ private fun RecordTransactionDialog(
                 OutlinedTextField(
                     value = invoiceNo,
                     onValueChange = { invoiceNo = it },
-                    label = { Text("Bill / Invoice Number (بل نمبر)") },
+                    label = { Text("Bill / Invoice Number") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )

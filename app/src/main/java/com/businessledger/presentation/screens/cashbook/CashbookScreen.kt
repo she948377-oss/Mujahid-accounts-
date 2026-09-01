@@ -114,8 +114,8 @@ fun CashbookScreen(
                         Icon(Icons.Default.Remove, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(6.dp))
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text("CASH OUT (خرچ)", fontWeight = FontWeight.Bold, fontSize = 13.sp)
-                            Text("ادائیگی / اخراجات", fontSize = 10.sp)
+                            Text("CASH OUT", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                            Text("Expense / Payment", fontSize = 10.sp)
                         }
                     }
 
@@ -137,8 +137,8 @@ fun CashbookScreen(
                         Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(6.dp))
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text("CASH IN (آمد)", fontWeight = FontWeight.Bold, fontSize = 13.sp)
-                            Text("وصولی / کیش سیل", fontSize = 10.sp)
+                            Text("CASH IN", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                            Text("Income / Counter Sales", fontSize = 10.sp)
                         }
                     }
                 }
@@ -153,10 +153,10 @@ fun CashbookScreen(
         ) {
             // Period Tabs (Today, This Week, This Month, All)
             val periodTabs = listOf(
-                CashbookFilterPeriod.TODAY to "Today (آج)",
-                CashbookFilterPeriod.THIS_WEEK to "Week (ہفتہ)",
-                CashbookFilterPeriod.THIS_MONTH to "Month (مہینہ)",
-                CashbookFilterPeriod.ALL to "All (تمام)"
+                CashbookFilterPeriod.TODAY to "Today",
+                CashbookFilterPeriod.THIS_WEEK to "Week",
+                CashbookFilterPeriod.THIS_MONTH to "Month",
+                CashbookFilterPeriod.ALL to "All"
             )
             val selectedTabIndex = when (uiState.period) {
                 CashbookFilterPeriod.TODAY -> 0
@@ -207,12 +207,12 @@ fun CashbookScreen(
                 FilterChip(
                     selected = uiState.typeFilter == CashEntryType.CASH_IN,
                     onClick = { viewModel.setTypeFilter(CashEntryType.CASH_IN) },
-                    label = { Text("Cash In (آمد)") }
+                    label = { Text("Cash In") }
                 )
                 FilterChip(
                     selected = uiState.typeFilter == CashEntryType.CASH_OUT,
                     onClick = { viewModel.setTypeFilter(CashEntryType.CASH_OUT) },
-                    label = { Text("Cash Out (خرچ)") }
+                    label = { Text("Cash Out") }
                 )
             }
 
@@ -322,7 +322,7 @@ private fun CashbookSummaryCard(
             ) {
                 Column {
                     Text(
-                        text = "Net Cash Balance (کیش ان ہینڈ)",
+                        text = "Net Cash Balance",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -360,7 +360,7 @@ private fun CashbookSummaryCard(
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text("Total Cash In (آمد)", style = MaterialTheme.typography.labelSmall, color = CreditGreen)
+                    Text("Total Cash In", style = MaterialTheme.typography.labelSmall, color = CreditGreen)
                     Text(
                         text = DisplaySettingsManager.formatPrice(cashIn, settings),
                         style = MaterialTheme.typography.titleSmall,
@@ -377,7 +377,7 @@ private fun CashbookSummaryCard(
                 )
 
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text("Total Cash Out (خرچ)", style = MaterialTheme.typography.labelSmall, color = DebitRed)
+                    Text("Total Cash Out", style = MaterialTheme.typography.labelSmall, color = DebitRed)
                     Text(
                         text = DisplaySettingsManager.formatPrice(cashOut, settings),
                         style = MaterialTheme.typography.titleSmall,
@@ -482,7 +482,7 @@ private fun CashbookEntryItem(
                         color = amountColor
                     )
                     Text(
-                        text = if (isIn) "Received (آمد)" else "Paid (خرچ)",
+                        text = if (isIn) "Received" else "Paid",
                         style = MaterialTheme.typography.labelSmall,
                         color = amountColor
                     )
@@ -533,7 +533,7 @@ private fun AddCashbookEntryDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = if (type == CashEntryType.CASH_IN) "Cash In (آمد کیش درج کریں)" else "Cash Out (خرچ کیش درج کریں)",
+                text = if (type == CashEntryType.CASH_IN) "Record Cash In" else "Record Cash Out",
                 color = if (type == CashEntryType.CASH_IN) CreditGreen else DebitRed,
                 fontWeight = FontWeight.Bold
             )
@@ -553,7 +553,7 @@ private fun AddCashbookEntryDialog(
                             type = CashEntryType.CASH_IN
                             category = "Counter Sales"
                         },
-                        label = { Text("Cash In (آمد)") },
+                        label = { Text("Cash In") },
                         modifier = Modifier.weight(1f)
                     )
                     FilterChip(
@@ -562,7 +562,7 @@ private fun AddCashbookEntryDialog(
                             type = CashEntryType.CASH_OUT
                             category = "Shop Expenses"
                         },
-                        label = { Text("Cash Out (خرچ)") },
+                        label = { Text("Cash Out") },
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -576,7 +576,7 @@ private fun AddCashbookEntryDialog(
                     modifier = Modifier.fillMaxWidth().testTag("cashbook_amount_input")
                 )
 
-                Text("Category (کیٹیگری):", style = MaterialTheme.typography.labelMedium)
+                Text("Category:", style = MaterialTheme.typography.labelMedium)
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(6.dp),
                     modifier = Modifier.fillMaxWidth()
@@ -593,7 +593,7 @@ private fun AddCashbookEntryDialog(
                 OutlinedTextField(
                     value = description,
                     onValueChange = { description = it },
-                    label = { Text("Description / Remarks (تفصیل)") },
+                    label = { Text("Description / Remarks") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth().testTag("cashbook_desc_input")
                 )

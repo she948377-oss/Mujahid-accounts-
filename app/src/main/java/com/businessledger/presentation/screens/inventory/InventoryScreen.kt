@@ -86,7 +86,7 @@ fun InventoryScreen(
             ExtendedFloatingActionButton(
                 onClick = { showAddDialog = true },
                 icon = { Icon(Icons.Default.Add, contentDescription = null) },
-                text = { Text("Add Item (نئی آئٹم)") },
+                text = { Text("Add Item") },
                 containerColor = EmeraldGreen,
                 contentColor = Color.White,
                 modifier = Modifier.padding(bottom = 72.dp).testTag("add_product_fab")
@@ -291,7 +291,7 @@ private fun InventorySummaryCard(
         ) {
             Column {
                 Text(
-                    text = "Total Stock Valuation (کل مالیت)",
+                    text = "Total Stock Valuation",
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -489,7 +489,7 @@ private fun AddEditProductDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = if (product == null) "Add Product (نئی آئٹم درج کریں)" else "Edit Product",
+                text = if (product == null) "Add Product" else "Edit Product",
                 fontWeight = FontWeight.Bold
             )
         },
@@ -501,7 +501,7 @@ private fun AddEditProductDialog(
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Product Name (پراڈکٹ کا نام) *") },
+                    label = { Text("Product Name *") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth().testTag("product_name_input")
                 )

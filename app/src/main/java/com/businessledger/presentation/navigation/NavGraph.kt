@@ -150,7 +150,7 @@ fun MainAppNavHost(
                             },
                             label = {
                                 Text(
-                                    text = screen.urduTitle,
+                                    text = screen.title,
                                     fontSize = 11.sp,
                                     fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
                                 )
