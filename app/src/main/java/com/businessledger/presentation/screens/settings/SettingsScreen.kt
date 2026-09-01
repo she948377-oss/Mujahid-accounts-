@@ -22,7 +22,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Business
 import androidx.compose.material.icons.filled.CleaningServices
-import androidx.compose.material.icons.filled.Dataset
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.FormatPaint
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Language
@@ -222,31 +222,21 @@ fun SettingsScreen(
                 ) {
                     Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(Icons.Default.Dataset, contentDescription = null, tint = EmeraldGreen)
+                            Icon(Icons.Default.CleaningServices, contentDescription = null, tint = DebitRed)
                             Spacer(modifier = Modifier.width(10.dp))
                             Column {
-                                Text("Seed Demo Sample Data", fontWeight = FontWeight.Bold)
-                                Text("Populate sample khata parties, cash entries, and stock items to test the app.", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text("Clear Ledger & Reset Data", fontWeight = FontWeight.Bold)
+                                Text("Permanently delete all ledger entries, customer/supplier records, cashbook transactions, and inventory items.", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             }
                         }
-
-                        OutlinedButton(
-                            onClick = {
-                                viewModel.populateSampleData()
-                                Toast.makeText(context, "Sample data added successfully!", Toast.LENGTH_SHORT).show()
-                            },
-                            modifier = Modifier.fillMaxWidth().testTag("seed_sample_data_button")
-                        ) {
-                            Text("Load Sample Business Data")
-                        }
-
-                        Spacer(modifier = Modifier.height(4.dp))
 
                         Button(
                             onClick = { showClearDataConfirm = true },
                             colors = ButtonDefaults.buttonColors(containerColor = DebitRed.copy(alpha = 0.9f)),
                             modifier = Modifier.fillMaxWidth().testTag("clear_all_data_button")
                         ) {
+                            Icon(Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(modifier = Modifier.width(8.dp))
                             Text("Clear All Data")
                         }
                     }
