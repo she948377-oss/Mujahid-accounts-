@@ -5,8 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.runtime.getValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.rememberNavController
 import com.businessledger.BusinessLedgerApp
 import com.businessledger.presentation.navigation.MainAppNavHost
@@ -56,7 +58,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            BusinessLedgerTheme {
+            val settings by settingsViewModel.settings.collectAsStateWithLifecycle()
+            BusinessLedgerTheme(darkTheme = settings.isDarkMode) {
                 val navController = rememberNavController()
                 MainAppNavHost(
                     navController = navController,

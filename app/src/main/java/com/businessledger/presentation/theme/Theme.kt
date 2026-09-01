@@ -20,32 +20,43 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 
-val EmeraldGreen = Color(0xFF0F5132)
-val EmeraldDark = Color(0xFF083321)
-val EmeraldLight = Color(0xFFD1E7DD)
-val EmeraldContainer = Color(0xFFE8F5E9)
-val EmeraldAccent = Color(0xFF2E7D32)
+val FintechEmerald = Color(0xFF10B981) // Vibrant Neon Mint/Emerald
+val FintechEmeraldGlow = Color(0xFF34D399)
+val FintechEmeraldDark = Color(0xFF064E3B)
+val FintechEmeraldContainer = Color(0xFF065F46)
 
-val AmberGold = Color(0xFFD97706)
-val AmberGoldLight = Color(0xFFFEF3C7)
+val FintechDarkBg = Color(0xFF0A0F1D) // Deep Slate Charcoal Canvas
+val FintechDarkSurface = Color(0xFF111927) // Primary Surface
+val FintechDarkCard = Color(0xFF192233) // Elevated Card Surface
+val FintechDarkCardElevated = Color(0xFF1F2B42) // Highlighted Card
+val FintechDarkBorder = Color(0xFF26334D) // Subtle high-end border
 
-val CreditGreen = Color(0xFF16A34A)
-val CreditGreenBg = Color(0xFFDCFCE7)
-val DebitRed = Color(0xFFDC2626)
-val DebitRedBg = Color(0xFFFEE2E2)
+val EmeraldGreen = FintechEmerald
+val EmeraldDark = Color(0xFF0F172A)
+val EmeraldLight = Color(0xFF064E3B)
+val EmeraldContainer = Color(0xFF132D29)
+val EmeraldAccent = FintechEmeraldGlow
 
-val DarkSurface = Color(0xFF111827)
-val DarkBackground = Color(0xFF0B0F19)
-val DarkCard = Color(0xFF1F2937)
+val AmberGold = Color(0xFFF59E0B)
+val AmberGoldLight = Color(0xFF78350F)
+
+val CreditGreen = Color(0xFF10B981)
+val CreditGreenBg = Color(0x2410B981)
+val DebitRed = Color(0xFFF43F5E)
+val DebitRedBg = Color(0x24F43F5E)
+
+val DarkSurface = FintechDarkSurface
+val DarkBackground = FintechDarkBg
+val DarkCard = FintechDarkCard
 
 private val LightColorScheme = lightColorScheme(
-    primary = EmeraldGreen,
+    primary = Color(0xFF0D9488),
     onPrimary = Color.White,
-    primaryContainer = EmeraldContainer,
-    onPrimaryContainer = EmeraldDark,
+    primaryContainer = Color(0xFFCCFBF1),
+    onPrimaryContainer = Color(0xFF115E59),
     secondary = AmberGold,
     onSecondary = Color.White,
-    secondaryContainer = AmberGoldLight,
+    secondaryContainer = Color(0xFFFEF3C7),
     onSecondaryContainer = Color(0xFF78350F),
     tertiary = Color(0xFF0284C7),
     background = Color(0xFFF8FAFC),
@@ -60,24 +71,24 @@ private val LightColorScheme = lightColorScheme(
 )
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFF4ADE80),
-    onPrimary = Color(0xFF052E16),
-    primaryContainer = Color(0xFF14532D),
-    onPrimaryContainer = Color(0xFFDCFCE7),
+    primary = FintechEmerald,
+    onPrimary = Color(0xFF022C22),
+    primaryContainer = Color(0xFF064E3B),
+    onPrimaryContainer = Color(0xFFA7F3D0),
     secondary = Color(0xFFFBBF24),
     onSecondary = Color(0xFF451A03),
     secondaryContainer = Color(0xFF78350F),
     onSecondaryContainer = Color(0xFFFEF3C7),
     tertiary = Color(0xFF38BDF8),
-    background = DarkBackground,
+    background = FintechDarkBg,
     onBackground = Color(0xFFF8FAFC),
-    surface = DarkSurface,
+    surface = FintechDarkSurface,
     onSurface = Color(0xFFF8FAFC),
-    surfaceVariant = DarkCard,
+    surfaceVariant = FintechDarkCard,
     onSurfaceVariant = Color(0xFF94A3B8),
-    outline = Color(0xFF334155),
-    error = Color(0xFFF87171),
-    onError = Color(0xFF450A0A)
+    outline = FintechDarkBorder,
+    error = Color(0xFFFB7185),
+    onError = Color(0xFF4C0519)
 )
 
 val AppTypography = Typography(

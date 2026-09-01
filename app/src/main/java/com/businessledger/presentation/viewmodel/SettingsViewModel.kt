@@ -73,6 +73,17 @@ class SettingsViewModel(
         }
     }
 
+    fun updateDarkMode(isDark: Boolean) {
+        viewModelScope.launch {
+            val current = settings.value
+            repository.updateDisplaySettings(
+                current.copy(
+                    isDarkMode = isDark
+                )
+            )
+        }
+    }
+
     fun updateFullSettings(entity: DisplaySettingsEntity) {
         viewModelScope.launch {
             repository.updateDisplaySettings(entity)

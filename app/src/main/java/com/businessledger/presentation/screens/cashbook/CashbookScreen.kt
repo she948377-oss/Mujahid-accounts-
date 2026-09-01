@@ -65,6 +65,7 @@ import com.businessledger.presentation.theme.CreditGreen
 import com.businessledger.presentation.theme.CreditGreenBg
 import com.businessledger.presentation.theme.DebitRed
 import com.businessledger.presentation.theme.DebitRedBg
+import com.businessledger.presentation.theme.FintechDarkBorder
 import com.businessledger.presentation.viewmodel.CashbookFilterPeriod
 import com.businessledger.presentation.viewmodel.CashbookViewModel
 import com.businessledger.utils.DisplaySettingsManager
@@ -307,12 +308,13 @@ private fun CashbookSummaryCard(
     netBalance: Double,
     settings: com.businessledger.data.local.entity.DisplaySettingsEntity
 ) {
-    ElevatedCard(
+    Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.elevatedCardColors(containerColor = MaterialTheme.colorScheme.surface)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
     ) {
         Column(modifier = Modifier.padding(14.dp)) {
             Row(
@@ -355,16 +357,16 @@ private fun CashbookSummaryCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(10.dp))
-                    .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
+                    .background(Color(0xFF0F172A))
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text("Total Cash In", style = MaterialTheme.typography.labelSmall, color = CreditGreen)
+                    Text("Total Cash In", style = MaterialTheme.typography.labelSmall, color = CreditGreen, fontWeight = FontWeight.Bold)
                     Text(
                         text = DisplaySettingsManager.formatPrice(cashIn, settings),
                         style = MaterialTheme.typography.titleSmall,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.ExtraBold,
                         color = CreditGreen
                     )
                 }
@@ -373,15 +375,15 @@ private fun CashbookSummaryCard(
                     modifier = Modifier
                         .width(1.dp)
                         .height(28.dp)
-                        .background(MaterialTheme.colorScheme.outline.copy(alpha = 0.3f))
+                        .background(FintechDarkBorder)
                 )
 
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text("Total Cash Out", style = MaterialTheme.typography.labelSmall, color = DebitRed)
+                    Text("Total Cash Out", style = MaterialTheme.typography.labelSmall, color = DebitRed, fontWeight = FontWeight.Bold)
                     Text(
                         text = DisplaySettingsManager.formatPrice(cashOut, settings),
                         style = MaterialTheme.typography.titleSmall,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.ExtraBold,
                         color = DebitRed
                     )
                 }
@@ -403,8 +405,9 @@ private fun CashbookEntryItem(
         modifier = Modifier
             .fillMaxWidth()
             .testTag("cash_entry_${entry.id}"),
-        shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+        shape = RoundedCornerShape(14.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
     ) {
         Row(
             modifier = Modifier

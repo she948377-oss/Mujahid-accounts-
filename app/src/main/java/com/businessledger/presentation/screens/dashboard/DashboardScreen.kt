@@ -76,6 +76,12 @@ import com.businessledger.presentation.theme.DebitRed
 import com.businessledger.presentation.theme.DebitRedBg
 import com.businessledger.presentation.theme.EmeraldDark
 import com.businessledger.presentation.theme.EmeraldGreen
+import com.businessledger.presentation.theme.FintechDarkBorder
+import com.businessledger.presentation.theme.FintechDarkCard
+import com.businessledger.presentation.theme.FintechDarkCardElevated
+import com.businessledger.presentation.theme.FintechEmerald
+import com.businessledger.presentation.theme.FintechEmeraldDark
+import com.businessledger.presentation.theme.FintechEmeraldGlow
 import com.businessledger.presentation.viewmodel.DashboardViewModel
 import com.businessledger.utils.DisplaySettingsManager
 import com.businessledger.utils.UrduLocalization
@@ -270,12 +276,12 @@ private fun HeaderSection(
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        EmeraldDark,
-                        EmeraldGreen
+                        Color(0xFF0F172A),
+                        Color(0xFF0A0F1D)
                     )
                 )
             )
-            .padding(horizontal = 20.dp, vertical = 20.dp)
+            .padding(horizontal = 20.dp, vertical = 22.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -285,9 +291,16 @@ private fun HeaderSection(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Box(
                     modifier = Modifier
-                        .size(48.dp)
-                        .clip(CircleShape)
-                        .background(Color.White.copy(alpha = 0.2f)),
+                        .size(50.dp)
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(
+                            brush = Brush.linearGradient(
+                                colors = listOf(
+                                    FintechEmerald,
+                                    FintechEmeraldDark
+                                )
+                            )
+                        ),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
@@ -297,7 +310,7 @@ private fun HeaderSection(
                         modifier = Modifier.size(28.dp)
                     )
                 }
-                Spacer(modifier = Modifier.width(12.dp))
+                Spacer(modifier = Modifier.width(14.dp))
                 Column {
                     Text(
                         text = businessName.ifEmpty { "Mujahid Accounts" },
@@ -308,7 +321,7 @@ private fun HeaderSection(
                     Text(
                         text = if (businessPhone.isNotEmpty()) businessPhone else "Digital Khata & Ledger",
                         style = MaterialTheme.typography.bodySmall,
-                        color = Color.White.copy(alpha = 0.85f)
+                        color = Color(0xFF94A3B8)
                     )
                 }
             }
@@ -317,13 +330,13 @@ private fun HeaderSection(
                 onClick = onOpenSettings,
                 modifier = Modifier
                     .clip(CircleShape)
-                    .background(Color.White.copy(alpha = 0.15f))
+                    .background(Color(0xFF1E293B))
                     .testTag("dashboard_settings_button")
             ) {
                 Icon(
                     imageVector = Icons.Default.Settings,
                     contentDescription = "Settings",
-                    tint = Color.White
+                    tint = FintechEmerald
                 )
             }
         }
@@ -343,18 +356,18 @@ private fun LedgerCardsSection(
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         // Main Net Balance Card
-        ElevatedCard(
+        Card(
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable { onNavigateToParties() }
                 .testTag("net_balance_card"),
-            shape = RoundedCornerShape(18.dp),
-            colors = CardDefaults.elevatedCardColors(
-                containerColor = MaterialTheme.colorScheme.surface
+            shape = RoundedCornerShape(20.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
             ),
-            elevation = CardDefaults.elevatedCardElevation(defaultElevation = 3.dp)
+            border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
         ) {
-            Column(modifier = Modifier.padding(18.dp)) {
+            Column(modifier = Modifier.padding(20.dp)) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -362,16 +375,18 @@ private fun LedgerCardsSection(
                 ) {
                     Column {
                         Text(
-                            text = "Total Net Balance",
-                            style = MaterialTheme.typography.labelLarge,
+                            text = "TOTAL NET BALANCE",
+                            style = MaterialTheme.typography.labelMedium,
+                            fontWeight = FontWeight.SemiBold,
+                            letterSpacing = 1.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
-                        Spacer(modifier = Modifier.height(4.dp))
+                        Spacer(modifier = Modifier.height(6.dp))
                         val netColor = if (summary.netBalance >= 0) CreditGreen else DebitRed
                         Text(
                             text = DisplaySettingsManager.formatPrice(summary.netBalance, settings),
                             style = MaterialTheme.typography.headlineLarge,
-                            fontWeight = FontWeight.Bold,
+                            fontWeight = FontWeight.ExtraBold,
                             color = netColor
                         )
                     }
@@ -382,17 +397,18 @@ private fun LedgerCardsSection(
                             .background(
                                 if (summary.netBalance >= 0) CreditGreenBg else DebitRedBg
                             )
-                            .padding(10.dp)
+                            .padding(12.dp)
                     ) {
                         Icon(
                             imageVector = if (summary.netBalance >= 0) Icons.Default.TrendingUp else Icons.Default.TrendingDown,
                             contentDescription = null,
-                            tint = if (summary.netBalance >= 0) CreditGreen else DebitRed
+                            tint = if (summary.netBalance >= 0) CreditGreen else DebitRed,
+                            modifier = Modifier.size(24.dp)
                         )
                     }
                 }
 
-                Spacer(modifier = Modifier.height(14.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
                 // Split Receivable and Payable Bars
                 Row(
@@ -403,9 +419,9 @@ private fun LedgerCardsSection(
                     Box(
                         modifier = Modifier
                             .weight(1f)
-                            .clip(RoundedCornerShape(12.dp))
+                            .clip(RoundedCornerShape(14.dp))
                             .background(CreditGreenBg)
-                            .padding(12.dp)
+                            .padding(14.dp)
                     ) {
                         Column {
                             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -420,14 +436,14 @@ private fun LedgerCardsSection(
                                     text = "To Receive (Lena Hai)",
                                     style = MaterialTheme.typography.labelSmall,
                                     color = CreditGreen,
-                                    fontWeight = FontWeight.SemiBold
+                                    fontWeight = FontWeight.Bold
                                 )
                             }
-                            Spacer(modifier = Modifier.height(4.dp))
+                            Spacer(modifier = Modifier.height(6.dp))
                             Text(
                                 text = DisplaySettingsManager.formatPrice(summary.totalReceivable, settings),
                                 style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold,
+                                fontWeight = FontWeight.ExtraBold,
                                 color = CreditGreen
                             )
                         }
@@ -437,9 +453,9 @@ private fun LedgerCardsSection(
                     Box(
                         modifier = Modifier
                             .weight(1f)
-                            .clip(RoundedCornerShape(12.dp))
+                            .clip(RoundedCornerShape(14.dp))
                             .background(DebitRedBg)
-                            .padding(12.dp)
+                            .padding(14.dp)
                     ) {
                         Column {
                             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -454,14 +470,14 @@ private fun LedgerCardsSection(
                                     text = "To Pay (Dena Hai)",
                                     style = MaterialTheme.typography.labelSmall,
                                     color = DebitRed,
-                                    fontWeight = FontWeight.SemiBold
+                                    fontWeight = FontWeight.Bold
                                 )
                             }
-                            Spacer(modifier = Modifier.height(4.dp))
+                            Spacer(modifier = Modifier.height(6.dp))
                             Text(
                                 text = DisplaySettingsManager.formatPrice(summary.totalPayable, settings),
                                 style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold,
+                                fontWeight = FontWeight.ExtraBold,
                                 color = DebitRed
                             )
                         }
@@ -486,9 +502,10 @@ private fun CashFlowStrip(
             .clickable { onNavigateToCashbook() }
             .testTag("today_cashflow_card"),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
         ),
-        shape = RoundedCornerShape(16.dp)
+        shape = RoundedCornerShape(16.dp),
+        border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
     ) {
         Column(modifier = Modifier.padding(14.dp)) {
             Row(
@@ -734,10 +751,11 @@ private fun StatCard(
 ) {
     Card(
         modifier = modifier.then(if (onClick != null) Modifier.clickable { onClick() } else Modifier),
-        shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+        shape = RoundedCornerShape(14.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
     ) {
-        Column(modifier = Modifier.padding(10.dp)) {
+        Column(modifier = Modifier.padding(12.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -755,10 +773,10 @@ private fun StatCard(
                     modifier = Modifier.size(16.dp)
                 )
             }
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(6.dp))
             Text(
                 text = value,
-                style = MaterialTheme.typography.titleSmall,
+                style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1
             )
@@ -766,7 +784,7 @@ private fun StatCard(
                 text = subtitle,
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                fontSize = 10.sp,
+                fontSize = 11.sp,
                 maxLines = 1
             )
         }
@@ -786,8 +804,9 @@ private fun RecentTransactionItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 4.dp),
-        shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+        shape = RoundedCornerShape(14.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
     ) {
         Row(
             modifier = Modifier

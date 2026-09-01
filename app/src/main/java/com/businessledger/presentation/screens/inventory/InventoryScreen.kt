@@ -64,6 +64,7 @@ import com.businessledger.presentation.theme.CreditGreen
 import com.businessledger.presentation.theme.DebitRed
 import com.businessledger.presentation.theme.DebitRedBg
 import com.businessledger.presentation.theme.EmeraldGreen
+import com.businessledger.presentation.theme.FintechDarkBorder
 import com.businessledger.presentation.viewmodel.InventoryFilterTab
 import com.businessledger.presentation.viewmodel.InventoryViewModel
 import com.businessledger.utils.DisplaySettingsManager
@@ -275,12 +276,13 @@ private fun InventorySummaryCard(
     valuation: Double,
     settings: com.businessledger.data.local.entity.DisplaySettingsEntity
 ) {
-    ElevatedCard(
+    Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.elevatedCardColors(containerColor = MaterialTheme.colorScheme.surface)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
     ) {
         Row(
             modifier = Modifier
@@ -298,7 +300,7 @@ private fun InventorySummaryCard(
                 Text(
                     text = DisplaySettingsManager.formatPrice(valuation, settings),
                     style = MaterialTheme.typography.headlineMedium,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.ExtraBold,
                     color = MaterialTheme.colorScheme.primary
                 )
                 Text(
@@ -353,7 +355,8 @@ private fun ProductItemCard(
             .fillMaxWidth()
             .testTag("product_item_${product.id}"),
         shape = RoundedCornerShape(14.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
     ) {
         Column(modifier = Modifier.padding(14.dp)) {
             Row(

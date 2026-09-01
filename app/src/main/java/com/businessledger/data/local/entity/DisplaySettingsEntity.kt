@@ -18,5 +18,5 @@ data class DisplaySettingsEntity(
     val compactView: Boolean = false,
     val showDecimals: Boolean = true,
     val defaultPaymentMode: String = "Cash",
-    val isDarkMode: Boolean = false
+    val isDarkMode: Boolean = true
 )

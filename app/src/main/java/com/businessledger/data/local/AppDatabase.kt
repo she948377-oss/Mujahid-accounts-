@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
         CashEntryEntity::class,
         DisplaySettingsEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -68,7 +68,7 @@ abstract class AppDatabase : RoomDatabase() {
                                         showBalanceInHeader = true,
                                         compactView = false,
                                         defaultPaymentMode = "Cash",
-                                        isDarkMode = false
+                                        isDarkMode = true
                                     )
                                 )
                             }

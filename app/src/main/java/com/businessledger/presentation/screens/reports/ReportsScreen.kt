@@ -61,6 +61,7 @@ import com.businessledger.presentation.theme.DebitRed
 import com.businessledger.presentation.theme.DebitRedBg
 import com.businessledger.presentation.theme.EmeraldDark
 import com.businessledger.presentation.theme.EmeraldGreen
+import com.businessledger.presentation.theme.FintechDarkBorder
 import com.businessledger.presentation.viewmodel.ReportType
 import com.businessledger.presentation.viewmodel.ReportsViewModel
 import com.businessledger.utils.DisplaySettingsManager
@@ -239,10 +240,11 @@ private fun BalanceSheetOverview(
     settings: com.businessledger.data.local.entity.DisplaySettingsEntity,
     onShare: () -> Unit
 ) {
-    ElevatedCard(
+    Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(18.dp),
-        colors = CardDefaults.elevatedCardColors(containerColor = MaterialTheme.colorScheme.surface)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
     ) {
         Column(modifier = Modifier.padding(18.dp)) {
             Row(
@@ -325,7 +327,8 @@ private fun ReportMetricRow(
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(10.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f))
+        colors = CardDefaults.cardColors(containerColor = Color(0xFF0F172A)),
+        border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder.copy(alpha = 0.5f))
     ) {
         Row(
             modifier = Modifier

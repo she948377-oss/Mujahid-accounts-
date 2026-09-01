@@ -22,10 +22,12 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Business
 import androidx.compose.material.icons.filled.CleaningServices
+import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.FormatPaint
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Language
+import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material.icons.filled.MonetizationOn
 import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.Store
@@ -65,6 +67,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.businessledger.presentation.theme.CreditGreen
 import com.businessledger.presentation.theme.DebitRed
 import com.businessledger.presentation.theme.EmeraldGreen
+import com.businessledger.presentation.theme.FintechDarkBorder
 import com.businessledger.presentation.viewmodel.SettingsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -93,10 +96,11 @@ fun SettingsScreen(
         ) {
             // Business Profile Header Card
             item {
-                ElevatedCard(
+                Card(
                     modifier = Modifier.fillMaxWidth().testTag("business_profile_card"),
                     shape = RoundedCornerShape(18.dp),
-                    colors = CardDefaults.elevatedCardColors(containerColor = MaterialTheme.colorScheme.surface)
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                    border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Row(
@@ -163,9 +167,35 @@ fun SettingsScreen(
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(14.dp),
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                    border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
                 ) {
                     Column {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.weight(1f)) {
+                                Icon(
+                                    imageVector = if (settings.isDarkMode) Icons.Default.DarkMode else Icons.Default.LightMode,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary
+                                )
+                                Spacer(modifier = Modifier.width(14.dp))
+                                Column {
+                                    Text("Dark Mode (Slate Theme)", fontWeight = FontWeight.SemiBold)
+                                    Text(if (settings.isDarkMode) "Modern Charcoal & Emerald Active" else "Light Theme Active", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                }
+                            }
+                            Switch(
+                                checked = settings.isDarkMode,
+                                onCheckedChange = { viewModel.updateDarkMode(it) }
+                            )
+                        }
+
                         SettingsRow(
                             icon = Icons.Default.MonetizationOn,
                             title = "Currency",
@@ -218,7 +248,8 @@ fun SettingsScreen(
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(14.dp),
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                    border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
                 ) {
                     Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -248,7 +279,8 @@ fun SettingsScreen(
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(14.dp),
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f))
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                    border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
                 ) {
                     Column(
                         modifier = Modifier

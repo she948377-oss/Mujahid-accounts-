@@ -76,6 +76,7 @@ import com.businessledger.presentation.theme.DebitRed
 import com.businessledger.presentation.theme.DebitRedBg
 import com.businessledger.presentation.theme.EmeraldDark
 import com.businessledger.presentation.theme.EmeraldGreen
+import com.businessledger.presentation.theme.FintechDarkBorder
 import com.businessledger.presentation.viewmodel.PartyDetailViewModel
 import com.businessledger.utils.DisplaySettingsManager
 import com.businessledger.utils.UrduLocalization
@@ -386,8 +387,8 @@ private fun PartyDetailHeaderCard(
             .fillMaxWidth()
             .padding(16.dp),
         shape = RoundedCornerShape(18.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             // Net Balance Display
@@ -438,7 +439,7 @@ private fun PartyDetailHeaderCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(12.dp))
-                    .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
+                    .background(Color(0xFF0F172A))
                     .padding(10.dp),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
@@ -460,7 +461,7 @@ private fun PartyDetailHeaderCard(
                     modifier = Modifier
                         .width(1.dp)
                         .height(30.dp)
-                        .background(MaterialTheme.colorScheme.outline.copy(alpha = 0.3f))
+                        .background(FintechDarkBorder)
                 )
 
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -506,8 +507,9 @@ private fun LedgerTransactionRow(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 4.dp),
-        shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+        shape = RoundedCornerShape(14.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
             Row(

@@ -69,6 +69,7 @@ import com.businessledger.presentation.theme.CreditGreenBg
 import com.businessledger.presentation.theme.DebitRed
 import com.businessledger.presentation.theme.DebitRedBg
 import com.businessledger.presentation.theme.EmeraldGreen
+import com.businessledger.presentation.theme.FintechDarkBorder
 import com.businessledger.presentation.viewmodel.PartyFilterTab
 import com.businessledger.presentation.viewmodel.PartiesUiState
 import com.businessledger.presentation.viewmodel.PartiesViewModel
@@ -253,13 +254,14 @@ private fun PartiesTopSummary(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        shape = RoundedCornerShape(14.dp)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        shape = RoundedCornerShape(16.dp),
+        border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp),
+                .padding(14.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -267,12 +269,13 @@ private fun PartiesTopSummary(
                     text = "Total Receivable",
                     style = MaterialTheme.typography.labelSmall,
                     color = CreditGreen,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.Bold
                 )
+                Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = DisplaySettingsManager.formatPrice(receivable, settings),
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.ExtraBold,
                     color = CreditGreen
                 )
             }
@@ -280,8 +283,8 @@ private fun PartiesTopSummary(
             Box(
                 modifier = Modifier
                     .width(1.dp)
-                    .height(36.dp)
-                    .background(MaterialTheme.colorScheme.outline.copy(alpha = 0.3f))
+                    .height(38.dp)
+                    .background(FintechDarkBorder)
             )
 
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -289,12 +292,13 @@ private fun PartiesTopSummary(
                     text = "Total Payable",
                     style = MaterialTheme.typography.labelSmall,
                     color = DebitRed,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.Bold
                 )
+                Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = DisplaySettingsManager.formatPrice(payable, settings),
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.ExtraBold,
                     color = DebitRed
                 )
             }
@@ -333,7 +337,8 @@ private fun PartyListItem(
             .clickable { onClick() }
             .testTag("party_item_${party.id}"),
         shape = RoundedCornerShape(14.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        border = androidx.compose.foundation.BorderStroke(1.dp, FintechDarkBorder)
     ) {
         Row(
             modifier = Modifier
