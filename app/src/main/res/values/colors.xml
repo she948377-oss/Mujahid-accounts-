@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_emerald">#0F5132</color>
+    <color name="primary_emerald_dark">#0A3622</color>
+    <color name="primary_emerald_light">#D1E7DD</color>
+    <color name="accent_gold">#D97706</color>
+    <color name="credit_green">#16A34A</color>
+    <color name="debit_red">#DC2626</color>
+    <color name="surface_light">#F8FAFC</color>
+    <color name="surface_dark">#0F172A</color>
+    <color name="card_border_light">#E2E8F0</color>
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
+

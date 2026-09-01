@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Mujahid accounts</string>
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_parties">Parties / Khata</string>
+    <string name="nav_cashbook">Cashbook</string>
+    <string name="nav_inventory">Inventory</string>
+    <string name="nav_reports">Reports</string>
+    <string name="nav_settings">Settings</string>
+</resources>
